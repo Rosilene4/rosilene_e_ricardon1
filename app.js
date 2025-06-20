@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const sequelize = require('./database');
 const Livro = require('./Livro');
-const livrosRoutes = require('.livros');
+const livrosRoutes = require('./livros');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname));
