@@ -1,0 +1,26 @@
+
+<%- include('../partials/header') %>
+<main>
+<h2>Lista de Livros</h2>
+<table>
+  <tr>
+    <th>ID</th><th>Título</th><th>Autor</th><th>Ano</th><th>Ações</th>
+  </tr>
+  <% livros.forEach(livro => { %>
+    <tr>
+      <td><%= livro.id %></td>
+      <td><%= livro.titulo %></td>
+      <td><%= livro.autor %></td>
+      <td><%= livro.ano %></td>
+      <td>
+        <a href="/livros/editar/<%= livro.id %>">
+          <button class="nav-button">Editar</button>
+        </a>
+        <form action="/livros/excluir/<%= livro.id %>" method="POST" style="display:inline;">
+          <button class="nav-button" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+        </form>
+      </td>
+    </tr>
+  <% }); %>
+</table>
+</main>
