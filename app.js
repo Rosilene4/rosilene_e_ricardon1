@@ -1,13 +1,14 @@
-
 const express = require('express');
 const path = require('path');
 const app = express();
+
 const sequelize = require('./database');
-const Livro = require('./Livro');
-const livrosRoutes = require('./livros');
+const Livro = require('./models/Livro');
+const livrosRoutes = require('./routes/livros');
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname));
+app.set('views', path.join(__dirname)); // usa a raiz como base
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 
@@ -17,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.use('/livros', livrosRoutes);
 
-// Sincronizar com o banco de dados e iniciar o servidor
+// Sincroniza com o banco de dados e inicia o servidor
 sequelize.sync().then(() => {
     app.listen(3000, () => {
         console.log('Servidor rodando em http://localhost:3000');
